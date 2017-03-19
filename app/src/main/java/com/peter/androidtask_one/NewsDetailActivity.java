@@ -37,6 +37,7 @@ public class NewsDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading ...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         Intent intent = getIntent();
         String value = intent.getStringExtra("Nid");

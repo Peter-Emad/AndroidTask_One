@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity
         mRV = (RecyclerView)findViewById(R.id.recyclerView);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading ...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
 
 
