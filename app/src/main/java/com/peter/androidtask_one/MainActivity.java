@@ -1,5 +1,6 @@
 package com.peter.androidtask_one;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
     public static ArrayList<NewsElement> ArrayOfNews = new ArrayList<>();
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,9 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mRV = (RecyclerView)findViewById(R.id.recyclerView);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading ...");
+        progressDialog.show();
 
 
         FetchingNews FetchNews = new FetchingNews(MainActivity.this);
@@ -59,6 +64,7 @@ public class MainActivity extends AppCompatActivity
                 adapter = new RecyclerAdapter(result , MainActivity.this);
                 mRV.setAdapter(adapter);
                 ArrayOfNews = result;
+                progressDialog.hide();
             }
 
         });

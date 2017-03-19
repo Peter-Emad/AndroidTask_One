@@ -1,5 +1,6 @@
 package com.peter.androidtask_one;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -23,6 +24,8 @@ public class NewsDetailActivity extends AppCompatActivity {
     TextView mTVdate , mTVlikes , mTVviews , mTVitemdesc;
     ImageView mIVnewsimage , mIVlikes , mIVviews;
     public static ArrayList<DetailedNews> NewsDetails = new ArrayList<>();
+    private ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +34,10 @@ public class NewsDetailActivity extends AppCompatActivity {
         initi();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading ...");
+        progressDialog.show();
         Intent intent = getIntent();
         String value = intent.getStringExtra("Nid");
 
@@ -49,6 +51,7 @@ public class NewsDetailActivity extends AppCompatActivity {
                 mTVdate.setText(NewsDetails.get(0).getPostDate());
                 mTVlikes.setText("Likes(" + NewsDetails.get(0).getLikes()+")");
                 mTVviews.setText(NewsDetails.get(0).getNumofViews()+ " views");
+                progressDialog.hide();
 
 
             }
